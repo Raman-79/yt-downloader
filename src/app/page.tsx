@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 //@ts-expect-error abc
 import * as youtubeUrl from 'youtube-url';
 
+
 export default function Home() {
   const [url, setUrl] = useState("");
   const [toggle, setToggle] = useState(false);
@@ -70,12 +71,7 @@ export default function Home() {
       if (res.ok) {
         const { presignedUrl } = data;
         // Use window.open for more control over download
-        const downloadWindow = window.open(presignedUrl, '_blank');
-        
-        if (!downloadWindow) {
-          // Popup blocked
-          setStatus("Popup blocked. Please allow popups and try again.");
-        }
+        window.location.href = presignedUrl;
       } else {
         // Enhanced error handling
         const errorMessage = data.error || 'An unknown error occurred';
